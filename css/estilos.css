@@ -1,0 +1,26 @@
+:root{
+    --colorPrimario: #c7c7c7;
+    --colorSecundario: #212121;
+}
+
+.contenedor__cuerpo{
+    float: left;
+    padding: 2rem 1rem;
+    background: var(--colorPrimario);
+}
+
+.contenedor__titulo__seccion{
+    float: left;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.elemento__formulario{
+    margin-right: 1rem;
+    padding: .5rem;
+}
+
+.entrada__numero{
+    float: left;
+    width: 30%;
+}

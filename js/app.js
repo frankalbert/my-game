@@ -1,8 +1,9 @@
 'use strict'
 const cifrasNumero = 4,
-numeroGuardado = window.sessionStorage;
+numeroGuardado = window.sessionStorage,
+numeroValidado = numeroGuardado.getItem("numero");
 
-(numeroGuardado.getItem("numero")) ? (console.log(JSON.parse(numeroGuardado.getItem("numero")))) : "";
+(numeroValidado) ? (console.log(JSON.parse(numeroValidado))) : "";
 
 
 document.querySelector('#guardarNumero').addEventListener('click', guardarNumero);
@@ -29,7 +30,9 @@ function guardarNumero(){
                 return false;
             } else{
                 numeroGuardado.setItem("numero", JSON.stringify(valorCadena));
-                console.log(JSON.parse(numeroGuardado.getItem("numero")));
+                for (let i = 0; i < largoCadena; i++){
+                    console.log(valorCadena[i]);
+                }
                 //console.log(valorCadena[i]);
             }
             

@@ -87,6 +87,7 @@ function guardarNumero(digitosRepetidos, tamanoNumero, valorNumero){
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">tiradas</th>
                             <th scope="col">N&uacute;mero</th>
                             <th scope="col">Toro(s)</th>
                             <th scope="col">Vaca(s)</th>
@@ -139,11 +140,12 @@ function listarTiradas(registroTiradas){
 
   let contenidoTirada = document.querySelector('#contenido__registro__tiradas');
   contenidoTirada.innerHTML = '';
-  registroTiradas.map(function(res){
+  registroTiradas.map(function(res, indice){
     contenidoTirada.innerHTML += `
     
     <tr>
-      <td>${res.numero}</td>
+      <th scope="row">${indice + 1}</th>
+      <th scope="row">${res.numero}</th>
       <td>${res.toros}</td>
       <td>${res.vacas}</td>
     </tr>

@@ -1,6 +1,7 @@
 :root{
     --colorPrimario: #c7c7c7;
     --colorSecundario: #212121;
+    --colorTerciario: #fff;
 }
 
 .contenedor__cuerpo{
@@ -23,4 +24,22 @@
 .entrada__numero{
     float: left;
     width: 30%;
+}
+
+.contenedor__tiradas{
+    float: left;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    background: var(--colorTerciario);
+    min-height: 150px;
+}
+
+.contenedor__elemento__tirada{
+    float: left;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.contenedor__titulo__tiradas h5{
+    color: var(--colorSecundario);
 }

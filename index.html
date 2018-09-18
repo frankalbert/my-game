@@ -13,7 +13,7 @@
 </head>
 
 <body>
-     
+
     <div class="container">
         <div class="contenedor__cuerpo w-100">
 
@@ -22,13 +22,41 @@
             </div>
 
             <div class="contenedor__datos__numero">
-                <input type="text" minlength="4" maxlength="4" class="entrada__numero elemento__formulario" id="miNumero" placeholder="Introduzca su n&uacute;mero" />
+                <input type="text" minlength="4" maxlength="4" class="entrada__numero elemento__formulario" id="miNumero" placeholder="Introduzca su n&uacute;mero"
+                />
                 <button type="button" class="guardar__numero btn btn-primary elemento__formulario" id="guardarNumero">Guardar N&uacute;mero</button>
             </div>
-            
+
             <div class="contenedor__numero_aprobado" id="contenido">
 
-                
+
+
+            </div>
+
+            <div class="contenedor__tiradas w-100">
+
+                <div class="contenedor__elemento__tirada contenedor--titulo--tiradas text-center">
+                    <h5>Registro de mis tiradas</h5>
+                </div>
+
+                <div class="contenedor__elemento__tirada contenedor--registro--tiradas">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">N&uacute;mero</th>
+                                <th scope="col">Toro(s)</th>
+                                <th scope="col">Vaca(s)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contenido__registro__tiradas">
+
+                        </tbody>
+                    </table>
+
+                </div>
+
 
             </div>
 

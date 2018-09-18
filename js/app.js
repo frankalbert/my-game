@@ -15,19 +15,14 @@ document
 
 function comprobarNumero(parametro) {
   const numero = document.querySelector("#miNumero"),
-    valorNumero = numero.value,
-    tamanoNumero = numero.value.length;
+  valorNumero = numero.value,
+  tamanoNumero = numero.value.length;
 
-  tamanoNumero !== 4 || !/^([0-9])*$/.test(valorNumero)
-    ? (alert(
-        "Por favor, debe introducir un número de " + cifrasNumero + " cifras"
-      ),
-      numero.focus())
-    : Number(valorNumero[0]) === 0
-      ? (alert("Su número no puede empezar por 0"),
-        document.querySelector("#miNumero").focus())
-      : recorrerNumero(parametro, tamanoNumero, valorNumero);
-
+  tamanoNumero !== 4 || !/^([0-9])*$/.test(valorNumero) ? (
+    alert("Por favor, debe introducir un número de " + cifrasNumero + " cifras"),
+    numero.focus()) : Number(valorNumero[0]) === 0 ? (
+      alert("Su número no puede empezar por 0"),
+      document.querySelector("#miNumero").focus()) : recorrerNumero(parametro, tamanoNumero, valorNumero);
 }
 
 function recorrerNumero(parametro, tamanoNumero, valorNumero) {
@@ -65,7 +60,6 @@ function guardarNumero(digitosRepetidos, tamanoNumero, valorNumero){
     if(numeroGuardado.getItem("numero")) { 
       document.querySelector(".contenedor__datos__numero").innerHTML = "";
       document.querySelector("#contenido").innerHTML = `
-
         <h4>Mi N&uacute;mero es: ${JSON.parse(
             numeroGuardado.getItem("numero")
         )}</h4>
@@ -83,31 +77,26 @@ function guardarNumero(digitosRepetidos, tamanoNumero, valorNumero){
             </div>
 
             <div class="contenedor__elemento__tirada contenedor--registro--tiradas">
-
                 <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">tiradas</th>
-                            <th scope="col">N&uacute;mero</th>
-                            <th scope="col">Toro(s)</th>
-                            <th scope="col">Vaca(s)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contenido__registro__tiradas">
+                  <thead>
+                    <tr>
+                      <th scope="col">tiradas</th>
+                      <th scope="col">N&uacute;mero</th>
+                      <th scope="col">Toro(s)</th>
+                      <th scope="col">Vaca(s)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="contenido__registro__tiradas">
 
-                    </tbody>
+                  </tbody>
                 </table>
-
             </div>
-
-        </div>
-        
+        </div>        
      `;
 
       document.querySelector('#realizarTirada').addEventListener("click", function(){
         comprobarNumero(2);
-      });
-  
+      }); 
     };
   }
 }
@@ -118,19 +107,15 @@ function comprobarTirada(digitosRepetidos, tamanoNumero, valorNumero){
     contadorToros = 0,
     contadorVacas = 0;
     for(let i = 0; i < numero.length; i++){
-        for(let j = 0; j < tamanoNumero; j++){
-          if((numero[i] === valorNumero[j]) && (i === j)){
-            contadorToros++
-          }else if((numero[i] === valorNumero[j])){
-            contadorVacas++
-          }    
-    
-        }
-
-    }
-    
+      for(let j = 0; j < tamanoNumero; j++){
+        if((numero[i] === valorNumero[j]) && (i === j)){
+          contadorToros++
+        }else if((numero[i] === valorNumero[j])){
+          contadorVacas++
+        }       
+      }
+    }    
     registroTiradas.push({"numero" : valorNumero, "toros" : contadorToros, "vacas" : contadorVacas});
-
     listarTiradas(registroTiradas);
   }
 }
@@ -141,16 +126,13 @@ function listarTiradas(registroTiradas){
   let contenidoTirada = document.querySelector('#contenido__registro__tiradas');
   contenidoTirada.innerHTML = '';
   registroTiradas.map(function(res, indice){
-    contenidoTirada.innerHTML += `
-    
-    <tr>
-      <th scope="row">${indice + 1}</th>
-      <th scope="row">${res.numero}</th>
-      <td>${res.toros}</td>
-      <td>${res.vacas}</td>
-    </tr>
-
+    contenidoTirada.innerHTML += `   
+      <tr>
+        <th scope="row">${indice + 1}</th>
+        <th scope="row">${res.numero}</th>
+        <td>${res.toros}</td>
+        <td>${res.vacas}</td>
+      </tr>
     `;
   })
-
 }

@@ -5,7 +5,6 @@ const cifrasNumero = 4,
 
   let registroTiradas = [];
 
-
 numeroValidado ? console.log(JSON.parse(numeroValidado)) : "";
 
 document
@@ -13,26 +12,6 @@ document
   .addEventListener("click", function(){
     comprobarNumero(1);
   });
-/*
-  if(numeroGuardado.getItem("numero")) { 
-    document.querySelector(".contenedor__datos__numero").innerHTML = "";
-    document.querySelector("#contenido").innerHTML = `
-        <h4>Mi N&uacute;mero es: ${JSON.parse(
-            numeroGuardado.getItem("numero")
-        )}</h4>
-
-        <div class="contenedor__datos__numero">
-            <input type="text" minlength="4" maxlength="4" class="entrada__numero elemento__formulario" id="miNumero" placeholder="Introduzca su tirada"
-            />
-            <button type="button" class="guardar__numero btn btn-primary elemento__formulario" id="realizarTirada">Realizar Tirada</button>
-        </div>
-    `;
-
-    document.querySelector('#realizarTirada').addEventListener("click", function(){
-      comprobarNumero(2);
-    });
-  };
-*/
 
 function comprobarNumero(parametro) {
   const numero = document.querySelector("#miNumero"),
@@ -86,16 +65,43 @@ function guardarNumero(digitosRepetidos, tamanoNumero, valorNumero){
     if(numeroGuardado.getItem("numero")) { 
       document.querySelector(".contenedor__datos__numero").innerHTML = "";
       document.querySelector("#contenido").innerHTML = `
-          <h4>Mi N&uacute;mero es: ${JSON.parse(
-              numeroGuardado.getItem("numero")
-          )}</h4>
 
-          <div class="contenedor__datos__numero">
-              <input type="text" minlength="4" maxlength="4" class="entrada__numero elemento__formulario" id="miNumero" placeholder="Introduzca su tirada"
-              />
-              <button type="button" class="guardar__numero btn btn-primary elemento__formulario" id="realizarTirada">Realizar Tirada</button>
-          </div>
-      `;
+        <h4>Mi N&uacute;mero es: ${JSON.parse(
+            numeroGuardado.getItem("numero")
+        )}</h4>
+
+        <div class="contenedor__datos__numero">
+            <input type="text" minlength="4" maxlength="4" class="entrada__numero elemento__formulario" id="miNumero" placeholder="Introduzca su tirada"
+            />
+            <button type="button" class="guardar__numero btn btn-primary elemento__formulario" id="realizarTirada">Realizar Tirada</button>
+        </div>
+
+        <div class="contenedor__tiradas w-100">
+
+            <div class="contenedor__elemento__tirada contenedor--titulo--tiradas text-center">
+                <h5>Registro de mis tiradas</h5>
+            </div>
+
+            <div class="contenedor__elemento__tirada contenedor--registro--tiradas">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">N&uacute;mero</th>
+                            <th scope="col">Toro(s)</th>
+                            <th scope="col">Vaca(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenido__registro__tiradas">
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        
+     `;
 
       document.querySelector('#realizarTirada').addEventListener("click", function(){
         comprobarNumero(2);
@@ -107,57 +113,42 @@ function guardarNumero(digitosRepetidos, tamanoNumero, valorNumero){
 
 function comprobarTirada(digitosRepetidos, tamanoNumero, valorNumero){
   if(!digitosRepetidos){
-    let numero = JSON.parse(numeroGuardado.getItem("numero"));
-
-  /*
-  //for(let digitos of numero){
-      for(let misDigitos of valorNumero){
-        if(numero.indexOf(misDigitos) !== -1){
-          console.log('coincide en ' + misDigitos + ' y en la posicion ' + numero.indexOf(misDigitos));
-        }        
-      }
-
-    //} */
-
-    let contadorToros = 0,
+    let numero = JSON.parse(numeroGuardado.getItem("numero")),
+    contadorToros = 0,
     contadorVacas = 0;
     for(let i = 0; i < numero.length; i++){
         for(let j = 0; j < tamanoNumero; j++){
           if((numero[i] === valorNumero[j]) && (i === j)){
             contadorToros++
-            //console.log('coincide el ' + valorNumero[j] + ' en la posición ' + j);
           }else if((numero[i] === valorNumero[j])){
             contadorVacas++
-            //console.log('coincide el ' + valorNumero[j] + ' en la posición ' + j);
           }    
     
         }
 
     }
-    registroTiradas.push({"tirada": Number(registroTiradas.tirada) + 1, "numero": valorNumero, "toros": contadorToros, "vacas": contadorVacas});
-
-    console.log('tienes ' + contadorToros + ' toros y tienes ' + contadorVacas + ' vacas');
-    console.log(registroTiradas);
+    
+    registroTiradas.push({"numero" : valorNumero, "toros" : contadorToros, "vacas" : contadorVacas});
 
     listarTiradas(registroTiradas);
   }
 }
 
 function listarTiradas(registroTiradas){
+  document.querySelector('#miNumero').value = "";
+
   let contenidoTirada = document.querySelector('#contenido__registro__tiradas');
   contenidoTirada.innerHTML = '';
   registroTiradas.map(function(res){
     contenidoTirada.innerHTML += `
     
     <tr>
-      <th scope="row">${res.tirada}</th>
       <td>${res.numero}</td>
       <td>${res.toros}</td>
       <td>${res.vacas}</td>
     </tr>
 
     `;
-    console.log(res.tirada);
   })
 
 }
